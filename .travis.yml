@@ -16,10 +16,21 @@ script: "./gradlew clean build"
 before_install:
   - chmod +x gradlew
 
+# 아래는 모든 파일을 압축함.
+#before_deploy:
+#  - zip -r freelec-sb2-webservices *
+#  - mkdir -p deploy
+#  - mv freelec-sb2-webservices.zip deploy/freelec-sb2-webservices.zip
+
+# 배포 시 실제로 필요한 파일들은 Jar, appspec.yml, 배포를 위한 스크립트들이기 때문에 새로 골라서 압축함
 before_deploy:
-  - zip -r freelec-sb2-webservices *
-  - mkdir -p deploy
-  - mv freelec-sb2-webservices.zip deploy/freelec-sb2-webservices.zip
+  - mkdir -p before-deploy # zip에 포함시킬 파일을 담은 디렉 생성
+  - cp scripts/*.sh before-deploy/
+  - cp appspec.yml before-deploy/
+  - cp build/libs/*.jar before-deploy/
+  - cd before-deploy && zip -r before-deploy * # 이동 후 전체 압축
+  - cd ../ && mkdir -p deploy # 상위 이동 후 deploy 디렉 생성
+  - mv before-deploy/before-deploy.zip deploy/freelec-sb2-webservices.zip # deploy로 zip 이동
 
 deploy:
   - provider: s3
