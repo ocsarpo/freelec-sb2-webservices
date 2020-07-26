@@ -1,7 +1,8 @@
 #!/bin/bash
 
 REPOSITORY=/home/ec2-user/app/step2
-PROJECT_NAME=freelec-sb2-webservices
+#PROJECT_NAME=freelec-sb2-webservices
+PROJECT_NAME=untitled
 
 echo "> Build 파일 복사"
 
