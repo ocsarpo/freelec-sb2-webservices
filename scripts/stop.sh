@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+
+ABSPATH=$(readlink -f $0)
 ABSDIR=$(dirname $ABSPATH)  # 현재 stop.sh가 속한 경로 찾음.
 source ${ABSDIR}/profile.sh # 이 문장과 같이 profile.sh의 경로를 찾기 위함 # import 구문
 
