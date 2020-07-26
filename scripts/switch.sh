@@ -9,9 +9,8 @@ function switch_proxy(){
 
   echo "> 전환할 포트: $IDLE_PORT"
   echo "> 포트 전환"
-  # 홑따옴표를 써야 $service_url을 변수가 아닌 그대로 인식할 수 있음
   # echo를 사용해 파이프라인으로 넘겨 뒤에서 받아 service-url.inc에 덮어씀
-  echo 'set \$service_url http://127.0.0.1:${IDLE_PORT};' | sudo tee /etc/nginx/conf.d/service-url.inc
+  echo "set \$service_url http://127.0.0.1:${IDLE_PORT};" | sudo tee /etc/nginx/conf.d/service-url.inc
 
   echo "> 엔진엑스 Reload"
   # reload는 restart와 달리 끊김없이 다시 불러옴.
