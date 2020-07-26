@@ -13,7 +13,7 @@ import java.util.List;
 public class ProfileController {
     private final Environment env;
 
-    @GetMapping
+    @GetMapping("/profile")
     public String profile(){
         // 현재 실행중인 ActiveProfile을 모두 가져옴
         // ex) real, oauth, real-db 등이 활성화 되어 있다면 3개가 모두 담겨있음
